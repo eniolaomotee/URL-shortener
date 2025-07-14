@@ -3,7 +3,7 @@ from functools import lru_cache
 from typing import Optional
 
 class BaseConfig(BaseSettings):
-    ENV_STATE = Optional[str]
+    ENV_STATE : Optional[str]
     model_config = SettingsConfigDict(env_file=".env",extra="ignore")
     
     

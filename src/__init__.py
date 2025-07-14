@@ -2,7 +2,11 @@ from fastapi import FastAPI
 from contextlib import asynccontextmanager
 from src.database.main import init,close_db
 from src.utils.logging_conf import configure_logging
+from src.v1.routes.url import url_router
+import logging
 
+
+logger = logging.getLogger(__name__)
 
 @asynccontextmanager
 async def lifespan(app:FastAPI):
@@ -23,5 +27,4 @@ app = FastAPI(
     lifespan=lifespan
 )
 
-# Connect routes here
-# app.include_router()
+app.include_router(url_router, prefix=f"/api/{version}" ,tags=["URLS"])
